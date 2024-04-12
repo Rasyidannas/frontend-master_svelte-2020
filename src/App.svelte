@@ -1,6 +1,15 @@
 <script>
-	let string = `this string contains some <strong>HTML!!!</strong>`;
+  import Nested from './Nested.svelte';
 </script>
 
-<!-- @html is will not sanitization -->
-<p>{@html string}</p>
+<p>This is a paragraph.</p>
+<Nested />
+
+<style>
+  /* :global() will set for all components */
+  :global(p) {
+    color: purple;
+    font-size: 'Comic sans MS', cursive;
+    font-size: 2em;
+  }
+</style>
