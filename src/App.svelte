@@ -1,6 +1,9 @@
-<script>
-	let src = "/cool-fun.gif";
-  let name = "Ciko"
-</script>
+<p>This is a paragraph.</p>
 
-<img {src} alt="{name} dances."/>
+<style>
+  p {
+    color: purple;
+    font-size: 'Comic sans MS', cursive;
+    font-size: 2em;
+  }
+</style>
