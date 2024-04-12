@@ -1,5 +1,6 @@
 <script>
-  let name = 'world';
+	let src = "/cool-fun.gif";
+  let name = "Ciko"
 </script>
 
-<h1>Hello {name.toUpperCase()}!</h1>
+<img {src} alt="{name} dances."/>
