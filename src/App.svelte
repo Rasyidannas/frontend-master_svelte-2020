@@ -1,15 +1,12 @@
 <script>
-  import Nested from './Nested.svelte';
+	let count = 0;
+
+	function increment() {
+    count += 1;
+	}
 </script>
 
-<p>This is a paragraph.</p>
-<Nested />
-
-<style>
-  /* :global() will set for all components */
-  :global(p) {
-    color: purple;
-    font-size: 'Comic sans MS', cursive;
-    font-size: 2em;
-  }
-</style>
+<button on:click={increment}>
+	Clicked {count}
+	{count === 1 ? 'time' : 'times'}
+</button>
