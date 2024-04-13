@@ -1,17 +1,19 @@
 <script>
-	let count = 0;
-	//this is a reactive declaration that will update the doubled variable whenever the count variable changes
-	$: if(count >= 10) {
-		alert(`count is dangerously high!`)
-		count = 9
-	};
+	let numbers = [1, 2, 3, 4];
 
-	function increment() {
-    count += 1;
+	function addNumber() {
+		// numbers.push(numbers.length + 1);
+		// numbers = numbers;//this will give reactive effect
+		
+		//this will give reactive effect same like above
+		numbers = [...numbers, numbers.length + 1]; 
 	}
+
+	$: sum = numbers.reduce((total, currentNumber) => total + currentNumber, 0);
 </script>
 
-<button on:click={increment}>
-	Clicked {count}
-	{count === 1 ? 'time' : 'times'}
+<p>{numbers.join(' + ')} = {sum}</p>
+
+<button on:click={addNumber}>
+	Add a number
 </button>
