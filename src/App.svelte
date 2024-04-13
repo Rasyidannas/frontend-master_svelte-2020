@@ -1,5 +1,7 @@
 <script>
 	let count = 0;
+	//this is a reactive declaration that will update the doubled variable whenever the count variable changes
+	$: doubled = count * 2;
 
 	function increment() {
     count += 1;
@@ -10,3 +12,5 @@
 	Clicked {count}
 	{count === 1 ? 'time' : 'times'}
 </button>
+
+<p>{count} doubled is {doubled}</p>
