@@ -1,9 +1,9 @@
 <script>
-	import Outer from './Outer.svelte';
+	import BigRedButton from './BigRedButton.svelte';
 
-	function handleMessage(event) {
-		alert(event.detail.text);
+	function handleClick() {
+		console.log("Teeeeeet!!!!")
 	}
 </script>
 
-<Outer on:message={handleMessage} />
+<BigRedButton on:click={handleClick} />
