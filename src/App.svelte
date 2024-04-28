@@ -1,15 +1,39 @@
 <script>
-	let html = '<p>write some text!</p>';
+	import { onMount } from 'svelte';
+	import { paint } from './gradient.js';
+
+	onMount(() => {
+		const canvas = document.querySelector('canvas');
+		const context = canvas.getContext('2d');
+
+		let frame = requestAnimationFrame(function loop(t) {
+			frame = requestAnimationFrame(loop);
+			paint(context, t);
+		})
+
+		//this is for avoid infinity loop when the component is destroyed
+		return () => {
+			cancelAnimationFrame(frame);
+		}
+	})
 </script>
 
-<div contenteditable="true" bind:innerHTML={html}></div>
-
-<pre>{html}</pre>
+<canvas
+	width={32}
+	height={32}
+/>
 
 <style>
-	[contenteditable] {
-		border: 1px solid #ccc;
-		padding: 10px;
-		margin: 10px 0;
+	canvas {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #666;
+		mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
+		mask-size: 60vmin;
+		-webkit-mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
+		-webkit-mask-size: 60vmin;
 	}
 </style>
