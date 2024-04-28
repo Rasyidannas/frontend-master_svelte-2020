@@ -1,9 +1,7 @@
 <script>
-	import BigRedButton from './BigRedButton.svelte';
-
-	function handleClick() {
-		console.log("Teeeeeet!!!!")
-	}
+	let name = 'world';
 </script>
 
-<BigRedButton on:click={handleClick} />
+<input bind:value={name} />
+
+<h1>Hello {name}!</h1>
