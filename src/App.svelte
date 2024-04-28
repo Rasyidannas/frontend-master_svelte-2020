@@ -1,28 +1,15 @@
 <script>
-	import { marked } from 'marked';
-	// import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
-	let value = `Some words are *italic*, some are **bold**\n\n- lists\n- are\n- cool`;
+	let html = '<p>write some text!</p>';
 </script>
 
-<div class="grid">
-	input
-	<textarea bind:value={value}></textarea>
+<div contenteditable="true" bind:innerHTML={html}></div>
 
-	output
-	<div>{@html marked(value)}</div>
-</div>
+<pre>{html}</pre>
 
 <style>
-	.grid {
-		display: grid;
-		grid-template-columns: 5em 1fr;
-		grid-template-rows: 1fr 1fr;
-		grid-gap: 1em;
-		height: 100%;
-	}
-
-	textarea {
-		flex: 1;
-		resize: none;
+	[contenteditable] {
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin: 10px 0;
 	}
 </style>
