@@ -6,7 +6,7 @@
 	Flip the card
 	<button
 		class="card"
-		class:flipped={flipped}
+		class:flipped
 		on:click={() => flipped = !flipped}
 	>
 	<!-- for above clas smae like this class="card {flipped ? 'flipped' : ''}" -->
