@@ -1,41 +1,16 @@
 <script>
-	import { onMount } from 'svelte';
-	import { paint } from './gradient.js';
-	let canvas;
+	import Keypad from './Keypad.svelte';
 
-	onMount(() => {
-		// const canvas = document.querySelector('canvas')
-		const context = canvas.getContext('2d');
+	let pin;
+	$: view = pin ? pin.replace(/\d(?!$)/g, '•') : 'enter your pin';
 
-		let frame = requestAnimationFrame(function loop(t) {
-			frame = requestAnimationFrame(loop);
-			paint(context, t);
-		});
-
-		return () => {
-			cancelAnimationFrame(frame);
-		};
-	});
+	function handleSubmit() {
+		alert(`submitted ${pin}`);
+	}
 </script>
 
-<!-- bind:this is for get DOM element -->
-<canvas
-	bind:this={canvas}
-	width={32}
-	height={32}
-/>
+<h1 style="opacity: {pin ? 1 : 0.4}">
+	{view}
+</h1>
 
-<style>
-	canvas {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #666;
-		mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
-		mask-size: 60vmin;
-		-webkit-mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
-		-webkit-mask-size: 60vmin;
-	}
-</style>
+<Keypad bind:value={pin} on:submit={handleSubmit} />
