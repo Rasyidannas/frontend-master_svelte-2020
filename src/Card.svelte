@@ -1,5 +1,14 @@
 <div class="card">
+	<header>
+		<slot name="telephon" />
+		<slot name="comppany" />
+	</header>
+
 	<slot />
+
+	<footer>
+		<slot name="address" />
+	</footer>
 </div>
 
 <style>
@@ -47,5 +56,12 @@
 		font-size: 0.7em;
 		justify-content: center;
 		align-items: end;
+	}
+
+	/* this is for global card and small target element in card parent */
+	.card :global(small) {
+		display: block;
+		font-size: 0.6em;
+		text-align: right;
 	}
 </style>
