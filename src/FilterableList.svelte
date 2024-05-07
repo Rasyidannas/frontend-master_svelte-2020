@@ -13,9 +13,12 @@
 		Filter: <input bind:value={search} />
 	</label>
 
-	<div class="header">
-		<slot name="header" />
-	</div>
+	<!-- checking for slot header -->
+	{#if $$slots.header}
+		<div class="header">
+			<slot name="header" />
+		</div>
+	{/if}
 
 	<div class="content">
 		{#each data.filter(matches) as item}
