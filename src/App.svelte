@@ -1,36 +1,75 @@
 <script>
-	import Card from './Card.svelte';
+	import FilterableList from './FilterableList.svelte';
+	import { colors } from './colors.js';
+
+	let row = colors[0];
 </script>
 
-<main>
-	<Card>
-		<span>Patrick BATEMAN</span>
-		<span>Vice President</span>
+<FilterableList data={colors} field="name" let:item={row}>
+	<header slot="header" class="row">
+		<span class="color" />
+		<span class="name">name</span>
+		<span class="hex">hex</span>
+		<span class="rgb">rgb</span>
+		<span class="hsl">hsl</span>
+	</header>
 
-		<span slot="telephone">212 555 6342</span>
-
-		<span slot="company">
-			Pierce &amp; Pierce
-			<small>Mergers and Aquisitions</small>
-		</span>
-
-		<span slot="address"
-			>358 Exchange Place, New York, N.Y. 100099 fax 212 555 6390 telex 10 4534</span
-		>
-	</Card>
-</main>
+	<div class="row">
+		<span class="color" style="background-color: {row.hex}" />
+		<span class="name">{row.name}</span>
+		<span class="hex">{row.hex}</span>
+		<span class="rgb">{row.rgb}</span>
+		<span class="hsl">{row.hsl}</span>
+	</div>
+</FilterableList>
 
 <style>
-	main {
+	.row {
 		display: grid;
-		place-items: center;
-		height: 100%;
-		background: url(./wood.svg);
+		align-items: center;
+		grid-template-columns: 2em 4fr 3fr;
+		gap: 1em;
+		padding: 0.1em;
+		background: var(--bg-1);
+		border-radius: 0.2em;
 	}
 
-	small {
-		display: block;
-		font-size: 0.6em;
-		text-align: right;
+	header {
+		font-weight: bold;
+	}
+
+	.row:not(header):hover {
+		background: var(--bg-2);
+	}
+
+	.color {
+		aspect-ratio: 1;
+		height: 100%;
+		border-radius: 0.1em;
+	}
+
+	.rgb,
+	.hsl {
+		display: none;
+	}
+
+	@media (min-width: 40rem) {
+		.row {
+			grid-template-columns: 2em 4fr 3fr 3fr;
+		}
+
+		.rgb {
+			display: block;
+		}
+	}
+
+	@media (min-width: 60rem) {
+		.row {
+			grid-template-columns: 2em 4fr 3fr 3fr 3fr;
+		}
+
+		.hsl {
+			display: block;
+		}
 	}
 </style>
