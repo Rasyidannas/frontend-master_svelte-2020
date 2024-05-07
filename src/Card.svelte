@@ -1,13 +1,22 @@
 <div class="card">
 	<header>
-		<slot name="telephon" />
-		<slot name="comppany" />
+		<slot name="telephon">
+			<!-- putting element inside slot it is for fallback -->
+			<i>(telephon)</i>
+		</slot>
+		<slot name="comppany">
+			<i>(company name)</i>
+		</slot>
 	</header>
 
-	<slot />
+	<slot>
+		<i>(name)</i>
+	</slot>
 
 	<footer>
-		<slot name="address" />
+		<slot name="address">
+			<i>(address)</i>
+		</slot>
 	</footer>
 </div>
 
