@@ -1,22 +1,18 @@
 <script>
-	import RedThing from './RedThing.svelte';
-	import GreenThing from './GreenThing.svelte';
-	import BlueThing from './BlueThing.svelte';
-
-	const options = [
-		{ color: 'red', component: RedThing },
-		{ color: 'green', component: GreenThing },
-		{ color: 'blue', component: BlueThing }
-	];
-
+	const options = ['h1', 'h2', 'h3', 'p', 'marquee'];
 	let selected = options[0];
 </script>
 
 <select bind:value={selected}>
 	{#each options as option}
-		<option value={option}>{option.color}</option>
+		<option value={option}>{option}</option>
 	{/each}
 </select>
 
-<!-- A component can change its type altogether with <svelte:component> -->
-<svelte:component this={selected.component} />
+{#if selected === 'h1'}
+	<h1>I'm a <code>&lt;h1&gt;</code> element</h1>
+{:else}
+	<svelte:element this={selected}>
+		I'm a <code>&lt;{selected}&gt;</code> element
+	</svelte:element>
+{/if}
