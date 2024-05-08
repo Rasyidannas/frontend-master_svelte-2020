@@ -1,19 +1,42 @@
 <script>
-	const themes = ['margaritaville', 'retrowave', 'spaaaaace', 'halloween'];
-	let selected = themes[0];
+	import Todo from './Todo.svelte';
+
+	let todos = [
+		{ id: 1, done: true, text: 'wash the car' },
+		{ id: 2, done: false, text: 'take the dog for a walk' },
+		{ id: 3, done: false, text: 'mow the lawn' }
+	];
+
+	function toggle(toggled) {
+		todos = todos.map((todo) => {
+			if (todo === toggled) {
+				// return a new object
+				return {
+					id: todo.id,
+					text: todo.text,
+					done: !todo.done
+				};
+			}
+
+			// return the same object
+			return todo;
+		});
+	}
 </script>
 
-<!-- The <svelte:head> element allows you to insert elements inside the <head> of your document. -->
-<svelte:head>
-	<link rel="stylesheet" href="/stylesheets/{selected}.css" />
-</svelte:head>
+<div class="centered">
+	<h1>todos</h1>
 
-<h1>Welcome to my site!</h1>
+	<ul class="todos">
+		{#each todos as todo (todo.id)}
+			<Todo {todo} on:change={() => toggle(todo)} />
+		{/each}
+	</ul>
+</div>
 
-<select bind:value={selected}>
-	<option disabled>choose a theme</option>
-
-	{#each themes as theme}
-		<option>{theme}</option>
-	{/each}
-</select>
+<style>
+	.centered {
+		max-width: 20em;
+		margin: 0 auto;
+	}
+</style>
