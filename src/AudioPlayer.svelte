@@ -1,6 +1,11 @@
 <!-- It's now possible for the components to 'talk' to each other without any state management: -->
 <script context="module">
 	let current;
+
+	// Anything exported from a context="module" script block becomes an export from the module itself.
+	export function stopAll() {
+		current?.pause();
+	}
 </script>
 
 <script>
